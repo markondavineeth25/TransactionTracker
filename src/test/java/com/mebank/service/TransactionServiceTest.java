@@ -90,7 +90,8 @@ public class TransactionServiceTest {
 
     @Test
     public void getReversalTransactions() {
-        transactionService.getReversalTransactions(this.transactions, Lists.newArrayList());
+        List<Transaction> reversalTransactions = transactionService.getReversalTransactions(this.transactions, Lists.newArrayList());
+        assertEquals(0, reversalTransactions.size());
     }
 
     @Test
