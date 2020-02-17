@@ -32,12 +32,11 @@ It wraps the file inside a csvParser object, which is passed onto the Transactio
 
 Service classes
 ----------------
-TransactionService - Parses the cvs file with the help of CsvParserService.  
+**TransactionService** - Parses the cvs file with the help of CsvParserService.  
 Initializes the inputs.  
 Filters transactions based on these inputs.  
 Calculate all payment transactions.   
 Then ignore reversal transactions.   
 Calculate relative balance.   
 
-CsvParserService - Service which takes csv parser object then converts them to list of Transaction objects.
-
+**CsvParserService** - Service which takes csv parser object then converts them to list of Transaction objects.
