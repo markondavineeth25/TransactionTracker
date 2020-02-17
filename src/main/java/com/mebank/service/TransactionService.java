@@ -1,11 +1,5 @@
 package com.mebank.service;
 
-import com.google.common.collect.Maps;
-import com.mebank.bo.Transaction;
-import org.apache.commons.csv.CSVParser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +7,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.google.common.collect.Maps;
+import com.mebank.bo.Transaction;
+import org.apache.commons.csv.CSVParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class TransactionService {
@@ -24,13 +23,14 @@ public class TransactionService {
         this.csvParserService = csvParserService;
     }
 
-    public void processTransactions(CSVParser csvParser) throws ParseException {
+    public HashMap<String, Object> processTransactions(CSVParser csvParser) throws ParseException {
         HashMap<String, Object> inputsMap = initializeInputs();
 
         ArrayList<Transaction> transactions = csvParserService.parseTransactions(csvParser, inputsMap);
 
-        calculateRelativeBalance(transactions, inputsMap);
+        HashMap<String, Object> outputMap = calculateRelativeBalance(transactions, inputsMap);
 
+        return outputMap;
     }
 
     private HashMap<String, Object> initializeInputs() throws ParseException {
@@ -51,7 +51,9 @@ public class TransactionService {
         return inputsMap;
     }
 
-    public void calculateRelativeBalance(List<Transaction> transactions, HashMap<String, Object> inputsMap) throws ParseException {
+    public HashMap<String, Object> calculateRelativeBalance(List<Transaction> transactions, HashMap<String, Object> inputsMap) throws ParseException {
+
+        HashMap<String, Object> outputMap = Maps.newHashMap();
 
         // Payment transactions after filtering
         List<Transaction> transactions_filtered = filterTransactionsBasedOnInputs(transactions, inputsMap);
@@ -70,6 +72,11 @@ public class TransactionService {
         // Output
         System.out.println("Relative balance for the period is: : " + (reversal_amount - payment_amount));
         System.out.println("Number of transactions included is: " + total_transactions);
+
+        outputMap.put("relativeBalance", (reversal_amount - payment_amount) );
+        outputMap.put("totalTransactions", total_transactions);
+
+        return outputMap;
     }
 
     public List<Transaction> getReversalTransactions(List<Transaction> transactions, List<String> transaction_ids_filtered) {
