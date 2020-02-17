@@ -16,7 +16,7 @@ The application takes 3 inputs to filter out transactions in csv file.
 - Transaction Start date
 - Transaction End date 
 
-## Configuration
+## Configuration and Running the application
 
 This application is designed to run as a stand alone application. 
 This means import the project into an IDE and build and run the main method. 
