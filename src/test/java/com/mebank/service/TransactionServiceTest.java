@@ -85,7 +85,9 @@ public class TransactionServiceTest {
     @Test
     public void calculateRelativeBalance() throws ParseException {
         HashMap<String, Object> inputsMap = getInputs();
-        transactionService.calculateRelativeBalance(transactions, inputsMap);
+        HashMap<String, Object> outputMap = transactionService.calculateRelativeBalance(transactions, inputsMap);
+        int totalTransactions = (Integer) outputMap.get("totalTransactions");
+        assertEquals(2, totalTransactions);
     }
 
     @Test
