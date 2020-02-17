@@ -10,6 +10,11 @@ To use this project you will require the following technology installed on your 
 - Apache Maven
 - JDK8
 
+## Third party libraries  
+- Apache commons csv: This is used to read csv file and process it, so as to convert records from csv to java objects.  
+- Google guava: This is a general purpose library, designed to make day to day coding easier. It has quite an extensive handy features. 
+- Mockito: Testing framework, used to mock objects. 
+
 ## Inputs 
 The application takes 3 inputs to filter out transactions in csv file.
 - Account Number
