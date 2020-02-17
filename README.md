@@ -21,8 +21,12 @@ The application takes 3 inputs to filter out transactions in csv file.
 This application is designed to run as a stand alone application. 
 This means import the project into an IDE and build and run the main method. 
 
+To run the application, run the App.java  
+This implements ApplicationRunner, hence making it easy to run on its own. 
+
 # Important Technical Components
-This is a spring boot application. Here spring boot is used only for start up so as to invoke the Controller class.
+This is a spring boot application.  
+Here spring boot is used only for start up so as to invoke the Controller class.  
 From controller class the actual flow starts. 
 
 TransactionController
